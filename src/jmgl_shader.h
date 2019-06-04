@@ -27,7 +27,7 @@ const char *fragment_yuv_id = "#version 330 core	\n"
 "yuv.x = texture(tex_y, TexCoord).x; \n"
 "yuv.y = texture(tex_u, TexCoord).x - 0.5; \n"
 "yuv.z = texture(tex_v, TexCoord).x - 0.5; \n"
-"rgb = mat3(1, 1, 1,       0, -0.39465, 2.03211,    1.13983, -0.58060, 0) * yuv; \n"
+"rgb = mat3(1, 1, 1,       0, -0.337633, 1.732446,    1.370705, -0.698001, 0) * yuv; \n"
 "	color = vec4(rgb, 1.0);	\n"
 "}	\n\0";
 

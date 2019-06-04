@@ -377,12 +377,12 @@ int jmgl_opengl_render(jmgl_image *img, gl_ctx *ctx)
 
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, ctx->textures[1]);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, img->width/2, img->height/2, 0, GL_RED, GL_UNSIGNED_BYTE, img->u);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, img->width, img->height, 0, GL_RED, GL_UNSIGNED_BYTE, img->u);
 	glUniform1i(glGetUniformLocation(ctx->program, "tex_u"), 1);
 
 	glActiveTexture(GL_TEXTURE2);
 	glBindTexture(GL_TEXTURE_2D, ctx->textures[2]);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, img->width/2, img->height/2, 0, GL_RED, GL_UNSIGNED_BYTE, img->v);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, img->width, img->height, 0, GL_RED, GL_UNSIGNED_BYTE, img->v);
 	glUniform1i(glGetUniformLocation(ctx->program, "tex_v"), 2);
 
 #endif	

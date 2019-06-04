@@ -18,7 +18,7 @@ extern "C" {
 #pragma comment(lib, "swscale.lib")
 
 }
-#define PIX_FMT_YUV420P AV_PIX_FMT_YUV420P
+#define PIX_FMT_YUV444P AV_PIX_FMT_YUV444P
 
 
 
@@ -112,14 +112,14 @@ static void *ffplayer_thread(void *arg)
 						if (_frame) av_free(_frame);
 						if (img->data) free(img->data);
 						_frame = av_frame_alloc();
-						img->data = (uint8_t*)av_malloc(avpicture_get_size(PIX_FMT_YUV420P, frame->width, frame->height) * sizeof(uint8_t));
-						avpicture_fill((AVPicture *)_frame, img->data, PIX_FMT_YUV420P, frame->width, frame->height);
+						img->data = (uint8_t*)av_malloc(avpicture_get_size(PIX_FMT_YUV444P, frame->width, frame->height) * sizeof(uint8_t));
+						avpicture_fill((AVPicture *)_frame, img->data, PIX_FMT_YUV444P, frame->width, frame->height);
 						img->y = _frame->data[0];
 						img->u = _frame->data[1];
 						img->v = _frame->data[2];
 						img->width = frame->width;
 						img->height = frame->height;
-						sws = sws_getCachedContext(sws, frame->width, frame->height, vcc->pix_fmt, frame->width, frame->height, PIX_FMT_YUV420P, SWS_BILINEAR, NULL, NULL, NULL);
+						sws = sws_getCachedContext(sws, frame->width, frame->height, vcc->pix_fmt, frame->width, frame->height, PIX_FMT_YUV444P, SWS_BILINEAR, NULL, NULL, NULL);
 
 					}
 					sws_scale(sws, (const uint8_t * const *)frame->data, frame->linesize, 0, frame->height, _frame->data, _frame->linesize);

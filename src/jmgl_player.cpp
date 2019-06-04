@@ -3,9 +3,9 @@
 
 #include "jmgl_image.h"
 
-#define FFMPEG_DEC		0
+#define FFMPEG_DEC		1
 #define NV_INTEL_DEC	0
-#define VIDEO_DEC		1
+#define VIDEO_DEC		0
 
 #if FFMPEG_DEC
 #include "jmgl_ff_player.h"
