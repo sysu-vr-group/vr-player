@@ -11,7 +11,7 @@
 #include "jmgl_shader.h"
 //#include "jmgl_vertex.h"
 
-
+bool playing = true;
 
 #define JMGL_CHECK_STATUS(T,O,S) do { \
   GLint status; \
@@ -80,6 +80,10 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
+
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS) {
+		playing = !playing;
+	}
 
 	if (key >= 0 && key < 1024)
 	{
@@ -347,6 +351,9 @@ double elapsed_seconds = 0.0f;
 //static double previous_seconds = 0.0f;
 int jmgl_opengl_render(jmgl_image *img, gl_ctx *ctx)
 {
+	while (!playing) {
+
+	}
 	static double previous_seconds = glfwGetTime();
 	double current_seconds = glfwGetTime();
 	elapsed_seconds = current_seconds - previous_seconds;
@@ -359,8 +366,7 @@ int jmgl_opengl_render(jmgl_image *img, gl_ctx *ctx)
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//HDR
-	run_tmo(img->width, img->height, img->y, img->u, img->v);
+	
 
 #if 0	// RGB
 	glActiveTexture(GL_TEXTURE0);

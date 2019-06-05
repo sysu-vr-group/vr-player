@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 #elif VIDEO_DEC
 	img = ctx->img;
 #endif
-
+	
 	while (!jmgl_window_is_close(gl))
 	{
 		jmgl_opengl_render(img, gl);

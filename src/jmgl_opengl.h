@@ -70,7 +70,6 @@ typedef struct jmgl_context
 	int height;
 	char *title;
 	void *user_data;
-
 }gl_ctx;
 
 gl_ctx *jmgl_opengl_create_context();

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <memory.h>
 #include "jmgl_ff_player.h"
+#include "hdr_rs.hpp"
 
 extern "C" {
 #include "libavformat\avformat.h"
@@ -39,7 +40,7 @@ void player_sync(int64_t pts, player_ctx *ctx)
 
 	return ;
 }
-
+float lum = -1;
 static void *ffplayer_thread(void *arg)
 {
 	player_ctx *ctx = (player_ctx *)arg;
@@ -130,6 +131,9 @@ static void *ffplayer_thread(void *arg)
 					}
 					img->pts = (img->pts - ic->start_time) * av_q2d(vs->time_base) * 1000000;
 					player_sync(img->pts, ctx);
+
+					//HDR
+					run_tmo(img->width, img->height, img->y, img->u, img->v, &lum);
 				}
 			}
 			av_free_packet(pkt);
