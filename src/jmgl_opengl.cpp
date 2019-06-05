@@ -359,6 +359,9 @@ int jmgl_opengl_render(jmgl_image *img, gl_ctx *ctx)
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	//HDR
+	run_tmo(img->width, img->height, img->y, img->u, img->v);
+
 #if 0	// RGB
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, ctx->textures[0]);

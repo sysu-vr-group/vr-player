@@ -5,7 +5,7 @@
 
 // OpenGL
 #include "jmgl_headers.h"
-
+#include "hdr_rs.hpp"
 #include "jmgl_image.h"
 
 

@@ -1,13 +1,4 @@
-/***********************************************      
-  *     OpenGL Panoramic View
-  *     Author:     Justin Mo 
-  *     Email:      mojing1999@gmail.com
-  *     Date:       2017.04.15
-  *     Version:   V0.01
-  ***********************************************
-  *     decode
-  ***********************************************
-  */
+
 #include <Windows.h>
 #include <stdio.h>
 #include <memory.h>

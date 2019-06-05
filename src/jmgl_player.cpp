@@ -25,15 +25,12 @@
 #include <Windows.h>
 #include <iostream>
 
-#include "hdr_rs.hpp"
 
 
 int main(int argc, char **argv)
 {
 	int dec_type = 0;
 	char *input = *(++argv);
-
-	print_hello_from_rust();
 
 	std::cout << "Simple Panorama player." << std::endl;
 	std::cout <<  "\tBase on OpenGL, NV CUDA decode, Intel Media SDK and FFmpeg." << std::endl;
