@@ -45,7 +45,7 @@ static void *ffplayer_thread(void *arg)
 {
 	player_ctx *ctx = (player_ctx *)arg;
 
-	jmgl_image	* img = ctx->img;	// TODO
+	jmgl_image *img = ctx->img;
 
 	AVFormatContext *ic = NULL;
 	AVCodecContext *vcc = NULL;
@@ -78,7 +78,7 @@ static void *ffplayer_thread(void *arg)
 			break;
 		}
 	}
-
+	
 	vcc = vs->codec;
 	vc = avcodec_find_decoder(vcc->codec_id);
 	avcodec_open2(vcc, vc, NULL);
@@ -109,6 +109,20 @@ static void *ffplayer_thread(void *arg)
 					fprintf(stderr, "avcodec_decode_video2() error %d\n", ret);
 				}
 				else if (got_frame) {
+					/*
+					if (ctx->imgs.size() <= 3) {
+						jmgl_image *img = new jmgl_image;
+						memset(img, 0x0, sizeof(jmgl_image));
+						ctx->imgs.push(img);
+					}
+					else {
+						delete ctx->imgs.front();
+						ctx->imgs.pop();
+						jmgl_image *img = new jmgl_image;
+						memset(img, 0x0, sizeof(jmgl_image));
+						ctx->imgs.push(img);
+					}
+					img = ctx->imgs.front();*/
 					if (img->width != frame->width || img->height != frame->height) {
 						if (_frame) av_free(_frame);
 						if (img->data) free(img->data);
@@ -170,11 +184,16 @@ int jmgl_player_init(char *url, player_ctx *ctx)
 	ctx->url = (char*)malloc(strlen(url) + 1);
 	if (ctx->url != NULL) strcpy(ctx->url, url);         // Copy string if okay
 
-
 	ctx->img = new jmgl_image;
 
 	memset(ctx->img, 0x0, sizeof(jmgl_image));
+	/*
+	jmgl_image *img = new jmgl_image;
 
+	memset(img, 0x0, sizeof(jmgl_image));
+
+	ctx->imgs.push(img);
+	*/
 	pthread_create(&ctx->play_thread, NULL, ffplayer_thread, ctx);
 
 	return 0;
@@ -187,9 +206,13 @@ int jmgl_player_deinit(player_ctx *ctx)
 	pthread_join(ctx->play_thread, NULL);
 	
 	free(ctx->url);
-	//free(ctx->img->data);
 	free(ctx->img);
-
+	/*
+	while (!ctx->imgs.empty()) {
+		delete ctx->imgs.front();
+		ctx->imgs.pop();
+	}
+	*/
 	delete ctx;
 
 	return 0;

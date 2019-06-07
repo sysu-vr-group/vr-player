@@ -2,15 +2,16 @@
 #ifndef _JMGL_FF_PLAYER_H_
 #define _JMGL_FF_PLAYER_H_
 #include "pthread.h"
-
+#include "queue"
 // OpenGL
 #include "jmgl_image.h"
 
 typedef struct jmgl_player
 {
-	char		*url;
+	char		* url;
 	void		* user_data;
 	jmgl_image	* img;
+	//std::queue<jmgl_image *> imgs;
 
 	bool		is_exit;
 	bool		is_pause;

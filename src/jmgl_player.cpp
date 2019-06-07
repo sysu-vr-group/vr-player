@@ -72,10 +72,24 @@ int main(int argc, char **argv)
 #elif VIDEO_DEC
 	img = ctx->img;
 #endif
-	
+	std::string str = player->url;
+	int f = str.find("mp4"), pre_pts = -1;
+
 	while (!jmgl_window_is_close(gl))
 	{
-		jmgl_opengl_render(img, gl);
+		if (f != -1) {
+			if (img->pts == pre_pts) {
+				continue;
+			}
+			else {
+				pre_pts = img->pts;
+				jmgl_opengl_render(img, gl);
+			}
+		}
+		else {
+			jmgl_opengl_render(img, gl);
+		}
+
 	}
 
 
