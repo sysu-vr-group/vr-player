@@ -1,1 +1,1 @@
-D:\hdr_rs\target\release\hdr_rs.dll.lib: D:\hdr_rs\src\hdr_encoder.rs D:\hdr_rs\src\lib.rs
+C:\Users\91413\Desktop\repository\hdr_rs\target\release\hdr_rs.dll.lib: C:\Users\91413\Desktop\repository\hdr_rs\src\hdr_encoder.rs C:\Users\91413\Desktop\repository\hdr_rs\src\lib.rs
